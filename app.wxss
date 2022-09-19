@@ -1,2 +1,23 @@
 /**app.wxss**/
+/* 引入图标样式 */
+@import "./styles/iconfont.wxss";
 
+/* 初始化常用标签样式 */
+page,
+view,
+text,
+swiper,
+swiper-item,
+image,
+navigator {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 主页面样式 */
+page {
+  /* 定义主题颜色、定义统一字体大小 */
+  --themeColor: #eb4450;
+  font-size: 28rpx;
+}
