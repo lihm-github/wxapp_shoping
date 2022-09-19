@@ -1,0 +1,7 @@
+<!-- 搜索框组件 -->
+<view class="search_input">
+  <!-- 该标签类似于平常的<a>标签；点击它就会跳到对应的url页面 -->
+  <navigator url="/pages/search/search" class="navigator">
+    搜索
+  </navigator>
+</view>
