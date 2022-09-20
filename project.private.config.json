@@ -10,7 +10,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/search/search",
+          "pathName": "pages/feedback/feedback",
           "query": "",
           "launchMode": "default",
           "scene": null

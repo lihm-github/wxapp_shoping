@@ -1,2 +1,49 @@
-<!--pages/feedback/feedback.wxml-->
-<text>pages/feedback/feedback.wxml</text>
+<!-- 意见反馈 -->
+<view class="pyg_feedback">
+  <!-- 使用Tabs组件，传入相应的数据、切换顶部栏内容事件 -->
+  <Tabs tabs="{{tabs}}" bindtap="handleTap" tabBgColor="{{tabBgColor}}">
+    <view class="fd_main">
+      <!-- 1. 问题的种类 -->
+      <view class="fb_title">问题的种类</view>
+      <view class="fb_tips">
+        <view class="item">
+          <text>功能建议</text>
+        </view>
+        <view class="item">
+          <text>购买遇到问题</text>
+        </view>
+        <view class="item">
+          <text>性能问题</text>
+        </view>
+        <view class="item">
+          <text>其他</text>
+        </view>
+      </view>
+
+      <!-- 2. 问题描述；使用了textarea多行文本框；和上传图片的组件 -->
+      <view class="fb_content">
+        <!-- 多行文本框，绑定value值，和监听input事件 -->
+        <textarea value="{{txtValue}}" bind:input="handleTxtInput" placeholder="请描述一下您的问题"></textarea>
+        <!-- 上传图片，为按钮添加事件、并把上传的图片地址循环用于显示、使用上传组件UpImg、 -->
+        <view class="fb_tool">
+          <!-- 这个事件是点击加号，触发添加图片 -->
+          <button bindtap="handleChooseImgs">+</button>
+          <view wx:for="{{imgPathArr}}" wx:key="*this" class="upimg_item">
+            <!-- 这个组件是用户显示图片的 -->
+            <UpImg src="{{item}}"></UpImg>
+            <!-- 这个事件是用户点击右上角而删除图片 -->
+            <view data-index="{{index}}" class="mask" bindtap="handleDeleteImg"></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 3. 提交按钮，绑定事件 -->
+      <view class="form_btn_wrap">
+        <button type="warn" bind:tap="handleFormSubmit">
+          <icon type="success_no_circle" color="white"></icon>
+          提交
+        </button>
+      </view>
+    </view>
+  </Tabs>
+</view>
