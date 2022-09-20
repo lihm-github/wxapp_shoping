@@ -1,13 +1,17 @@
 <!-- 搜索页面 -->
 <view class="pyg_search">
-  <!-- 搜索输入框 -->
+  <!-- 1. 搜索输入框 -->
   <view class="search_row">
+    <!-- input输入框绑定一个监听修改的事件函数；绑定value为动态的 -->
+    <!-- 输入值，触发监听函数，修改data中的值，把data的值绑定到value属性；达到双向绑定 -->
     <input value="{{iptValue}}" type="search" placeholder="输入要搜索的商品" bindinput="handleInput" />
+    <!-- 按钮绑定了一个事件 -->
     <button bindtap="handleCancel" hidden="{{!isFocus}}">取消</button>
   </view>
 
-  <!-- 搜索历史 -->
+  <!-- 2. 搜索历史 -->
   <view class="search_content">
+    <!-- 循环搜索到的商品数据，商品id给了跳转url -->
     <navigator url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}" wx:for="{{searchedGoodsList}}" wx:key="goods_id">
       {{item.goods_name}}
     </navigator>
