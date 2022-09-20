@@ -1,2 +1,51 @@
-<!--pages/goods_detail/goods_detail.wxml-->
-<text>pages/goods_detail/goods_detail.wxml</text>
+<!-- 商品详情 -->
+<view class="pyg_goods_detail">
+  <!-- 轮播组件，自动切换、面板指示点、采用衔接滑动 -->
+  <swiper autoplay indicator-dots circular>
+    <!-- 循环数据，绑定点击轮播图放大预览事件，把当前项的index传入该事件中 -->
+    <swiper-item bindtap="handlePreviewImage" data-index="{{index}}" wx:for="{{goodsObj.pics}}" wx:key="pics_id">
+      <image mode="widthFix" src="{{item.pics_mid}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 价格 -->
+  <view class="goods_price">￥{{goodsObj.goods_price}}</view>
+  <!-- 商品名称、收藏 -->
+  <view class="goods_name_wrap">
+    <view class="goods_name">{{goodsObj.goods_name}}</view>
+    <!-- 这里绑定商品收藏事件，根据isCollected的值来实现收藏效果 -->
+    <view class="goods_collect" bindtap="handleCollect">
+      <text class="iconfont {{isCollected ? 'icon-shoucangxuanzhong' : 'icon-shoucang'}}"></text>
+      <view class="collect_text">收藏</view>
+    </view>
+  </view>
+  <!-- 详情信息 -->
+  <view class="goods_info">
+    <view class="goods_info_title">图文详情</view>
+    <rich-text nodes="{{goodsObj.goods_introduce}}"></rich-text>
+  </view>
+
+  <!-- 底部内容 -->
+  <view class="bottom_tool">
+    <!-- 客服、分享 -->
+    <view class="tool_item item1">
+      <text class="iconfont icon-kefu1"></text>
+      <view>联系客服</view>
+      <button open-type="contact"></button>
+    </view>
+    <view class="tool_item item2">
+      <text class="iconfont icon-fenxiang1"></text>
+      <view>分享</view>
+      <button open-type="share"></button>
+    </view>
+
+    <!-- 购物车 -->
+    <navigator url="/pages/cart/cart" open-type="switchTab" class="tool_item item3">
+      <text class="iconfont icon-gouwuche2"></text>
+      <view>购物车</view>
+    </navigator>
+    <!-- 这里有个点击事件 -->
+    <view class="cart" bindtap="handleAddCart">加入购物车</view>
+    <navigator url="/pages/cart/cart" open-type="switchTab" class="buy">立即购买</navigator>
+  </view>
+</view>

@@ -1,2 +1,88 @@
-<!--pages/cart/cart.wxml-->
-<text>pages/cart/cart.wxml</text>
+<!-- 购物车 -->
+<view class="pyg_cart">
+  <!-- 收货地址区域 -->
+  <view class="receive_address">
+    <!-- 1. 不存在收货地址时显示 添加收货地址按钮 -->
+    <view class="receive_address_btn" wx:if="{{!address.userName}}">
+      <!-- 绑定一个添加地址的事件 -->
+      <button type="primary" plain bindtap="handleChooseAddress">添加收货地址</button>
+    </view>
+    <!-- 2. 存在收货地址时显示 收货地址 -->
+    <view class="receive_address_info" wx:else>
+      <!-- 用户名、地址 -->
+      <view class="user_info">
+        <view>{{address.userName}}</view>
+        <view>{{address.all}}</view>
+      </view>
+      <!-- 用户手机号 -->
+      <view class="user_phone">
+        <view>{{address.telNumber}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车内容 -->
+  <view class="cart_content">
+    <!-- 1. 标题 -->
+    <view class="cart_title">购物车</view>
+    <!-- 2. 内容 -->
+    <view class="cart_main">
+      <!-- 如果购物车存在数据，不然就是平级另一个block显示 -->
+      <block wx:if="{{cart.length}}">
+        <!-- for循环购物车数据 -->
+        <view class="cart_item" wx:for="{{cart}}" wx:key="goods_id">
+          <!-- 2.1 微信提供的复选框组件；绑定一个事件，并把当前商品id传进去 -->
+          <view class="cart_chk_wrap">
+            <checkbox-group data-id="{{item.goods_id}}" bindchange="handleItemChange">
+              <checkbox checked="{{item.checked}}"></checkbox>
+            </checkbox-group>
+          </view>
+          <!--2.2  商品图片 -->
+          <navigator>
+            <image mode="widthFix" src="{{item.goods_small_logo}}"></image>
+          </navigator>
+          <!-- 2.3 商品信息 -->
+          <view class="cart_info_wrap">
+            <!-- 商品名称、减去/添加商品按钮 -->
+            <view class="goods_name">{{item.goods_name}}</view>
+            <view class="goods_price_wrap">
+              <view class="goods_price">￥{{item.goods_price}}</view>
+              <!-- 实现减去/添加商品数量，绑定事件，把当前商品id传过去，并把加减标识传过去 -->
+              <view class="cart_num_tool">
+                <view class="num_edit" data-id="{{item.goods_id}}" data-operation="{{1}}" bindtap="handleChangeNumber">
+                  +
+                </view>
+                <view class="goods_num">{{item.num}}</view>
+                <view class="num_edit" data-id="{{item.goods_id}}" data-operation="{{-1}}" bindtap="handleChangeNumber">
+                  -
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <!-- 购物车没有东西 -->
+        <image mode="widthFix" src="../../images/2.gif"></image>
+      </block>
+    </view>
+  </view>
+
+  <!-- 底部工具栏 -->
+  <view class="footer_tool">
+    <!-- 1. 全选，把购物车的所有商品全选了；绑定一个事件 -->
+    <view class="all_chk_wrap">
+      <checkbox-group bindchange="handleCheckAll">
+        <checkbox checked="{{allChecked}}">全选</checkbox>
+      </checkbox-group>
+    </view>
+    <!-- 2. 总价格 -->
+    <view class="total_price_wrap">
+      合计：
+      <text class="total_price">￥{{totalPrice}}</text>
+      <view>包含运费</view>
+    </view>
+    <!-- 3. 结算，绑定一个事件 -->
+    <view class="order_pay_wrap" bindtap="handlePay">结算({{totalNum}})</view>
+  </view>
+</view>

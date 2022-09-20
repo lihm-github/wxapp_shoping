@@ -10,7 +10,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/goods_list/goods_list",
+          "pathName": "pages/cart/cart",
           "query": "",
           "launchMode": "default",
           "scene": null
