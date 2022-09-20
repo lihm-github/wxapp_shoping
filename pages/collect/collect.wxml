@@ -1,2 +1,35 @@
-<!--pages/collect/collect.wxml-->
-<text>pages/collect/collect.wxml</text>
+<!-- 商品收藏 -->
+<view class="pyg_collect">
+  <!-- 使用Tabs组件，并把数据tabs传过去，和事件有传过去 -->
+  <Tabs tabs="{{tabs}}" bindtap="handleTap">
+    <!-- 循环数据，根据数据中的isActive进行选择性的切换数据；与同级block一起实现 -->
+    <block wx:if="{{tabs[0].isActive}}">
+      <view class="collect_main">
+        <!-- 1. 内容标题 -->
+        <view class="collect_title">
+          <text class="active">全部</text>
+          <text>正在热卖</text>
+          <text>即将上线</text>
+        </view>
+        <!-- 2. 内容主体 -->
+        <view class="collent_content">
+          <!-- 循环数据，把商品id，进行传入url -->
+          <navigator wx:for="{{collect}}" wx:key="goods_id" url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
+            <!-- 左侧图片容器 -->
+            <view class="goods_img_wrap">
+              <image src="{{item.goods_small_logo || defaultImage}}" mode="widthFix"></image>
+            </view>
+            <!-- 右侧商品容器 -->
+            <view class="goods_info_wrap">
+              <view class="goods_name">{{item.goods_name}}</view>
+              <view class="goods_price">￥{{item.goods_price}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{tabs[1].isActive}}">品牌收藏</block>
+    <block wx:elif="{{tabs[2].isActive}}">店铺收藏</block>
+    <block wx:else>浏览足迹</block>
+  </Tabs>
+</view>

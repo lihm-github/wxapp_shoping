@@ -1,2 +1,26 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<!-- 订单查询 -->
+<view class="pyg_order">
+  <!-- 使用到Tabs组件，把数据tabs、事件函数传过去 -->
+  <Tabs tabs="{{tabs}}" bindtap="handleTap">
+    <view class="order_main">
+      <!-- 1. 内容项；循环数据 -->
+      <view class="order_item" wx:for="{{orders}}" wx:key="order_id">
+        <!-- 1.1 订单编号 -->
+        <view class="order_num_row">
+          <text>订单编号</text>
+          <text>{{item.order_number}}</text>
+        </view>
+        <!-- 1.1 订单价格 -->
+        <view class="order_price_row">
+          <text>订单价格</text>
+          <text class="price">￥{{item.order_price}}</text>
+        </view>
+        <!-- 1.1 订单日期 -->
+        <view class="order_date_row">
+          <text>订单日期</text>
+          <text>{{item.create_time_format}}</text>
+        </view>
+      </view>
+    </view>
+  </Tabs>
+</view>

@@ -1,2 +1,15 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<!-- 搜索页面 -->
+<view class="pyg_search">
+  <!-- 搜索输入框 -->
+  <view class="search_row">
+    <input value="{{iptValue}}" type="search" placeholder="输入要搜索的商品" bindinput="handleInput" />
+    <button bindtap="handleCancel" hidden="{{!isFocus}}">取消</button>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="search_content">
+    <navigator url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}" wx:for="{{searchedGoodsList}}" wx:key="goods_id">
+      {{item.goods_name}}
+    </navigator>
+  </view>
+</view>
