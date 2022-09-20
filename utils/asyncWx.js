@@ -47,3 +47,51 @@ export const showToast = ({
     })
   })
 }
+
+// 登录方法
+export const login = () => {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      timeout: 10000,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    })
+  })
+}
+
+// 获取用户个人信息，当前登录的账号
+export const getUserProfile = ({
+  desc
+}) => {
+  return new Promise((resolve, reject) => {
+    // 调用微信提供的授权方法api
+    wx.getUserProfile({
+      desc: desc,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (err) => {
+        reject(err)
+      },
+    })
+  })
+}
+
+// 支付请求方法
+export const requestPayment = (pay) => {
+  return new Promise((resolve, reject) => {
+    wx.requestPayment({
+      ...pay,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    })
+  })
+}

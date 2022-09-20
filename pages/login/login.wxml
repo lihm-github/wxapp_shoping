@@ -1,2 +1,3 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<!-- 登录：使用此登录账号进行授权等路 -->
+<!-- 绑定一个事件 -->
+<button type="primary" plain bindtap="handleGetUserProfile">授权登录</button>
