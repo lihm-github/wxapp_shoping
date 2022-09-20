@@ -1,0 +1,16 @@
+<!-- Tabs 组件 -->
+<view class="tabs">
+  <!--tabs标题  -->
+  <view class="tabs_title" style="background-color: {{tabBgColor}};">
+    <!-- 循环数据，根据是否是选中项而给予选中样式；绑定事件，并把索引index传给这个事件函数 -->
+    <!-- 绑定事件bindtap改成catchtap，防止事件冒泡，既防止父组件重新执行一次父组件的事件函数 -->
+    <view class="title_item {{item.isActive ? 'active':''}}" wx:for="{{tabs}}" wx:key="id" catchtap="handleItemTap" data-index="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 内容插槽 -->
+  <view class="tabs_content">
+    <slot></slot>
+  </view>
+</view>

@@ -1,0 +1,59 @@
+.cates_container {
+  // 左右内容布局，并把底部栏挡住的部分减去
+  display: flex;
+  height: calc(100vh - 90rpx);
+
+  .left_menu {
+    // 左侧占两份
+    flex: 2;
+
+    .menu_item {
+      height: 80rpx;
+      text-align: center;
+      line-height: 80rpx;
+      font-size: 30rpx;
+    }
+
+    .active {
+      color: var(--themeColor);
+      border-left: 5rpx solid currentColor;
+    }
+  }
+
+  .right_content {
+    // 右侧占5份
+    flex: 5;
+
+    .goods_group {
+      .goods_title {
+        height: 80rpx;
+        text-align: center;
+        line-height: 80rpx;
+
+        .delimiter {
+          color: #ccc;
+          padding: 0 10rpx;
+        }
+      }
+
+      .goods_list {
+        // 商品列表使用flex布局，排序是横排
+        display: flex;
+        flex-wrap: wrap;
+
+        navigator {
+          width: 33.33%;
+          text-align: center;
+
+          image {
+            width: 50%;
+          }
+
+          .goods_name {
+            padding: 10rpx 0;
+          }
+        }
+      }
+    }
+  }
+}
